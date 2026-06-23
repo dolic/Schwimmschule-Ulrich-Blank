@@ -71,7 +71,7 @@
       box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
     .nav-logo img {
-      height: 44px;
+      height: 60px;
       width: auto;
       filter: brightness(0) invert(1);
     }
@@ -188,12 +188,30 @@
       90%  { opacity: 0.6; }
       100% { transform: translateY(-120px) scale(1); opacity: 0; }
     }
-    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .hero-bubbles  { z-index: 1; }
-    .hero-logo {
-      width: clamp(200px, 38vw, 340px);
+    .hero-logo-card {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 28px 48px;
       margin: 0 auto 36px;
-      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35)) brightness(0) invert(1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+    .hero-logo {
+      width: clamp(180px, 34vw, 300px);
+      display: block;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.2)) brightness(0) invert(1);
     }
     .hero-badge {
       display: inline-flex;
@@ -562,12 +580,14 @@
     <div class="hero-overlay"></div>
     <div class="hero-bubbles" id="bubbles"></div>
     <div class="hero-content">
-      <img
-        src="Schwimmschule_Logo_ohne_Hintergrund.png"
-        alt="Schwimmschule U. Blank – Geprüfter Schwimmmeister"
-        class="hero-logo"
-      />
-      <div class="hero-badge">✓ Schwimmkurse laufen durchgehend</div>
+      <div class="hero-logo-card">
+        <img
+          src="Schwimmschule_Logo_ohne_Hintergrund.png"
+          alt="Schwimmschule U. Blank – Geprüfter Schwimmmeister"
+          class="hero-logo"
+        />
+      </div>
+      <div class="hero-badge"> Es findend durchgehend Schwimmkurse statt</div>
       <p class="hero-tagline">
         Sicher schwimmen lernen – für Kinder, Jugendliche und Erwachsene.<br>
         Professionell betreut von geprüftem Schwimmmeister Ulrich Blank.
