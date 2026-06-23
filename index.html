@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schwimmschule U. Blank – Geprüfter Schwimmmeister</title>
+  <meta name="description" content="Schwimmkurse für Kinder, Jugendliche und Erwachsene in Hesselberg und Nördlingen. Einzelunterricht und Gruppen mit geprüftem Schwimmmeister." />
+  <style>
+    /* ========== Custom Properties ========== */
+    :root {
+      --navy:       #0B2545;
+      --navy-mid:   #134072;
+      --blue:       #1B6CA8;
+      --sky:        #4BBFED;
+      --white:      #ffffff;
+      --off-white:  #f4f8fc;
+      --gray:       #64748b;
+      --light-gray: #e2e8f0;
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(11, 37, 69, 0.12);
+      --transition: 0.3s ease;
+    }
+
+    /* ========== Reset ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--navy);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ========== Typography ========== */
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; line-height: 1.25; }
+    h3 { font-size: 1.2rem; font-weight: 600; }
+    p  { font-size: 1.05rem; color: var(--gray); }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(75, 191, 237, 0.15);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+
+    /* ========== Navigation ========== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      background: rgba(11, 37, 69, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    nav.scrolled {
+      background: var(--navy);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--sky);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: white;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--navy);
+      padding: 16px 5% 24px;
+      z-index: 99;
+      flex-direction: column;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--sky); }
+
+    /* ========== Hero ========== */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 55%, var(--blue) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 120px 5% 80px;
+      overflow: hidden;
+    }
+    .hero-bubbles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(75, 191, 237, 0.07);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) scale(0.3); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-120px) scale(1); opacity: 0; }
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-logo {
+      width: clamp(200px, 38vw, 340px);
+      margin: 0 auto 36px;
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35)) brightness(0) invert(1);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(75, 191, 237, 0.18);
+      border: 1px solid rgba(75, 191, 237, 0.45);
+      color: var(--sky);
+      padding: 7px 20px;
+      border-radius: 99px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 40px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .btn-primary { background: var(--sky); color: var(--navy); }
+    .btn-primary:hover {
+      background: #6dcff0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(75, 191, 237, 0.4);
+    }
+    .btn-outline { background: transparent; color: white; border-color: rgba(255,255,255,0.45); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* Wave divider */
+    .wave-divider { line-height: 0; overflow: hidden; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ========== Sections ========== */
+    section { padding: 88px 5%; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 { margin-bottom: 16px; }
+    .section-header p { max-width: 600px; margin: 0 auto; }
+
+    /* ========== Fakten-Streifen ========== */
+    .facts-strip { background: var(--white); padding: 40px 5%; }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+    .fact-item { padding: 12px 16px; border-left: 1px solid var(--light-gray); }
+    .fact-item:first-child { border-left: none; }
+    .fact-number { font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .fact-label  { font-size: 0.83rem; color: var(--gray); margin-top: 6px; }
+    @media (max-width: 600px) {
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+      .fact-item:nth-child(2n+1) { border-left: none; }
+      .fact-item:nth-child(n+3) { border-top: 1px solid var(--light-gray); margin-top: 12px; padding-top: 20px; }
+    }
+
+    /* ========== Kurse ========== */
+    #kurse { background: var(--off-white); }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .course-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      border-top: 4px solid var(--sky);
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(11, 37, 69, 0.15);
+    }
+    .course-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--blue), var(--sky));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+    .course-card h3 { margin-bottom: 12px; color: var(--navy); }
+    .course-card p  { font-size: 0.95rem; }
+    .course-meta {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .info-banner {
+      background: linear-gradient(135deg, var(--blue), #2196b4);
+      border-radius: var(--radius);
+      padding: 28px 40px;
+      text-align: center;
+      margin-top: 40px;
+      color: white;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .info-banner strong { font-size: 1.1rem; }
+    .info-banner p { color: rgba(255,255,255,0.82); margin-top: 6px; font-size: 0.97rem; }
+
+    /* ========== Standorte ========== */
+    #standorte { background: var(--white); }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .location-card {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .location-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 28px 32px;
+      color: white;
+    }
+    .location-header h3 { font-size: 1.35rem; margin-bottom: 4px; }
+    .location-header p  { color: rgba(255,255,255,0.68); font-size: 0.9rem; }
+    .location-body { padding: 28px 32px; }
+    .location-address {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+    .location-address .icon { font-size: 1.2rem; margin-top: 2px; }
+    .location-address p  { font-size: 0.95rem; margin: 0; }
+    .schedule-table { width: 100%; border-collapse: collapse; }
+    .schedule-table th {
+      text-align: left;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light-gray);
+    }
+    .schedule-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+    .schedule-table td:last-child { color: var(--blue); font-weight: 600; }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      background: var(--navy);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background var(--transition);
+    }
+    .download-btn:hover { background: var(--blue); }
+
+    /* ========== Kontakt ========== */
+    #kontakt { background: var(--navy); }
+    #kontakt .section-tag { background: rgba(75,191,237,0.2); color: var(--sky); }
+    #kontakt .section-header h2 { color: white; }
+    #kontakt .section-header p  { color: rgba(255,255,255,0.6); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 { color: white; margin-bottom: 28px; }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 22px;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: rgba(75, 191, 237, 0.12);
+      border: 1px solid rgba(75, 191, 237, 0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+    .contact-item-value { color: white; font-weight: 500; font-size: 0.98rem; }
+    .contact-item-value a { color: var(--sky); transition: color var(--transition); }
+    .contact-item-value a:hover { color: white; }
+
+    /* Form */
+    .contact-form {
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .contact-form h3 { color: white; margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label {
+      display: block;
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      padding: 11px 15px;
+      color: white;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+    input:focus, select:focus, textarea:focus { border-color: var(--sky); }
+    select option { background: var(--navy); color: white; }
+    textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--sky);
+      color: var(--navy);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 6px;
+    }
+    .btn-submit:hover {
+      background: #6dcff0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(75, 191, 237, 0.35);
+    }
+    .form-success {
+      display: none;
+      margin-top: 16px;
+      background: rgba(75,191,237,0.15);
+      border: 1px solid rgba(75,191,237,0.4);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: var(--sky);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      background: #071829;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 28px 5%;
+      font-size: 0.875rem;
+    }
+    footer a { color: rgba(255,255,255,0.55); transition: color var(--transition); }
+    footer a:hover { color: white; }
+
+    /* ========== Scroll fade-in ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 960px) {
+      .about-grid    { grid-template-columns: 1fr; gap: 40px; }
+      .about-image-container { order: -1; }
+      .contact-grid  { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      section { padding: 64px 5%; }
+      .nav-links  { display: none; }
+      .hamburger  { display: flex; }
+      .courses-grid   { grid-template-columns: 1fr; max-width: 100%; }
+      .locations-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .info-banner { padding: 24px; }
+    }
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .contact-form { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <img src="Schwimmschule_Logo_ohne_Hintergrund.png" alt="Schwimmschule U. Blank" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#kurse">Kurse</a></li>
+      <li><a href="#standorte">Standorte & Zeiten</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#kurse" class="mobile-link">Kurse</a>
+    <a href="#standorte" class="mobile-link">Standorte & Zeiten</a>
+    <a href="#kontakt" class="mobile-link">Kontakt</a>
+  </div>
+
+  <!-- ===== Hero ===== -->
+  <section id="hero">
+    <div class="hero-bubbles" id="bubbles"></div>
+    <div class="hero-content">
+      <img
+        src="Schwimmschule_Logo_ohne_Hintergrund.png"
+        alt="Schwimmschule U. Blank – Geprüfter Schwimmmeister"
+        class="hero-logo"
+      />
+      <div class="hero-badge">✓ Schwimmkurse laufen durchgehend</div>
+      <p class="hero-tagline">
+        Sicher schwimmen lernen – für Kinder, Jugendliche und Erwachsene.<br>
+        Professionell betreut von geprüftem Schwimmmeister Ulrich Blank.
+      </p>
+      <div class="hero-cta">
+        <a href="#kurse" class="btn btn-primary">Kursangebote ansehen</a>
+        <a href="#kontakt" class="btn btn-outline">Jetzt anmelden</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider" style="background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 55%, var(--blue) 100%); margin-top:-1px;">
+    <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,36 C240,72 480,0 720,36 C960,72 1200,0 1440,36 L1440,72 L0,72 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <!-- ===== Fakten-Streifen ===== -->
+  <div class="facts-strip">
+    <div class="container">
+      <div class="facts-grid">
+        <div class="fact-item fade-in">
+          <div class="fact-number" data-count="2">0</div>
+          <div class="fact-label">Standorte in der Region</div>
+        </div>
+        <div class="fact-item fade-in">
+          <div class="fact-number" data-count="12">0</div>
+          <div class="fact-label">Einheiten pro Kurs</div>
+        </div>
+        <div class="fact-item fade-in">
+          <div class="fact-number" data-count="60">0</div>
+          <div class="fact-label">Minuten pro Einheit</div>
+        </div>
+        <div class="fact-item fade-in">
+          <div class="fact-number">∞</div>
+          <div class="fact-label">Freude am Wasser</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave -->
+  <div class="wave-divider" style="background: white;">
+    <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,28 C360,56 720,0 1080,28 C1260,42 1380,14 1440,28 L1440,56 L0,56 Z" fill="#f4f8fc"/>
+    </svg>
+  </div>
+
+  <!-- ===== Kurse ===== -->
+  <section id="kurse">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Kursangebot</span>
+        <h2>Das richtige Angebot für jeden</h2>
+        <p>Egal ob Kind, Jugendlicher oder Erwachsener – wir haben das passende Kursprogramm für jedes Alter und jedes Niveau.</p>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card fade-in">
+          <div class="course-icon">🏊</div>
+          <h3>Gruppenunterricht</h3>
+          <p>Schwimmkurse in kleinen Gruppen. Spielerisch und altersgerecht – vom ersten Wassergewöhnen bis zur Verbesserung der Technik.</p>
+          <div class="course-meta">📅 12 × 60 Minuten</div>
+        </div>
+        <div class="course-card fade-in">
+          <div class="course-icon">🎯</div>
+          <h3>Einzelunterricht</h3>
+          <p>Intensives 1:1-Training mit individuell abgestimmten Inhalten. Ideal für gezieltes Techniktraining oder besondere Lernbedürfnisse – flexibel nach Absprache.</p>
+          <div class="course-meta">📅 Termine nach Absprache</div>
+        </div>
+      </div>
+
+      <div class="info-banner fade-in">
+        <strong>✓ Es finden durchgehend Schwimmkurse statt!</strong>
+        <p>Melden Sie sich jetzt an und sichern Sie sich Ihren Platz. Alle Kurse werden von geprüftem Schwimmmeister Ulrich Blank geleitet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider" style="background: #f4f8fc;">
+    <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C480,56 960,0 1440,36 L1440,56 L0,56 Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- ===== Standorte ===== -->
+  <section id="standorte">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Standorte & Zeiten</span>
+        <h2>Zwei Hallenbäder in Ihrer Nähe</h2>
+        <p>Wir sind in Hesselberg und Nördlingen für Sie da – mit regelmäßigen Kurszeiten an mehreren Wochentagen.</p>
+      </div>
+      <div class="locations-grid">
+
+        <!-- Hesselberg -->
+        <div class="location-card fade-in">
+          <div class="location-header">
+            <h3>Hallenbad Hesselberg</h3>
+            <p>Gerolfingen</p>
+          </div>
+          <div class="location-body">
+            <div class="location-address">
+              <span class="icon">📍</span>
+              <p>Hesselbergstraße 26<br>91726 Gerolfingen</p>
+            </div>
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Wochentag</th>
+                  <th>Uhrzeit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Montag</td><td>14:00 – 15:00 Uhr</td></tr>
+                <tr><td>Dienstag</td><td>14:00 – 15:00 Uhr</td></tr>
+                <tr><td>Mittwoch</td><td>14:00 – 15:00 Uhr</td></tr>
+              </tbody>
+            </table>
+            <a href="Formulare/Anmeldeformular zum Schwimmkurs_Hesselberg_v2.pdf" download class="download-btn">
+              ⬇ Anmeldeformular herunterladen
+            </a>
+          </div>
+        </div>
+
+        <!-- Nördlingen -->
+        <div class="location-card fade-in">
+          <div class="location-header">
+            <h3>Hallenbad Nördlingen</h3>
+            <p>Nördlingen</p>
+          </div>
+          <div class="location-body">
+            <div class="location-address">
+              <span class="icon">📍</span>
+              <p>Industriestraße 29<br>86720 Nördlingen</p>
+            </div>
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Wochentag</th>
+                  <th>Uhrzeit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Montag</td><td>16:30 – 17:30 Uhr</td></tr>
+                <tr><td>Mittwoch</td><td>16:30 – 17:30 Uhr</td></tr>
+                <tr><td>Donnerstag</td><td>16:30 – 17:30 Uhr</td></tr>
+              </tbody>
+            </table>
+            <a href="Formulare/Anmeldeformular zum Schwimmkurs_Nördlingen_v3.pdf" download class="download-btn">
+              ⬇ Anmeldeformular herunterladen
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider" style="background: white;">
+    <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,36 C240,0 480,56 720,28 C960,0 1200,56 1440,18 L1440,56 L0,56 Z" fill="#0B2545"/>
+    </svg>
+  </div>
+
+  <!-- ===== Kontakt ===== -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Kontakt</span>
+        <h2>Wir freuen uns auf Ihre Anfrage</h2>
+        <p>Haben Sie Fragen oder möchten Sie sich für einen Kurs anmelden? Nehmen Sie gerne Kontakt auf – wir melden uns schnellstmöglich bei Ihnen.</p>
+      </div>
+      <div class="contact-grid">
+
+        <!-- Kontaktdaten -->
+        <div class="contact-info fade-in">
+          <h3>So erreichen Sie uns</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Verwaltungsadresse</div>
+              <div class="contact-item-value">Sonnenstraße 50<br>91550 Dinkelsbühl</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-item-label">Telefon</div>
+              <div class="contact-item-value">
+                <a href="tel:+4998515511156">09851 / 5511156</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <div class="contact-item-label">Mobil</div>
+              <div class="contact-item-value">
+                <a href="tel:+4915209718444">0152 / 09718444</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-item-label">E-Mail</div>
+              <div class="contact-item-value">
+                <a href="mailto:Schwimmschule-Blank@web.de">Schwimmschule-Blank@web.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kontaktformular -->
+        <div class="contact-form fade-in">
+          <h3>Nachricht senden</h3>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Vorname</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Max" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Nachname</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Mustermann" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail-Adresse</label>
+              <input type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="0123 / 456789" />
+            </div>
+            <div class="form-group">
+              <label for="course">Kursinteresse</label>
+              <select id="course" name="course">
+                <option value="">Bitte wählen …</option>
+                <option value="Kinder – Hesselberg">Kinder – Hesselberg</option>
+                <option value="Kinder – Nördlingen">Kinder – Nördlingen</option>
+                <option value="Gruppenunterricht">Gruppenunterricht</option>
+                <option value="Einzelunterricht">Einzelunterricht</option>
+                <option value="Sonstiges">Sonstiges / Frage</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Ihre Nachricht</label>
+              <textarea id="message" name="message" placeholder="Ihre Frage oder Anmeldewunsch …"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Nachricht senden →</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            ✓ Vielen Dank! Ihre Nachricht wurde weitergeleitet. Wir melden uns bald.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>
+      © 2025 Schwimmschule U. Blank · Geprüfter Schwimmmeister ·
+      <a href="mailto:Schwimmschule-Blank@web.de">Schwimmschule-Blank@web.de</a> ·
+      <a href="tel:+4915209718444">0152 / 09718444</a>
+    </p>
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Floating bubbles in hero
+    const bubblesContainer = document.getElementById('bubbles');
+    function spawnBubble() {
+      const b = document.createElement('div');
+      b.classList.add('bubble');
+      const size = Math.random() * 90 + 20;
+      b.style.cssText =
+        `width:${size}px;height:${size}px;` +
+        `left:${Math.random() * 100}%;` +
+        `animation-duration:${Math.random() * 12 + 8}s;` +
+        `animation-delay:${Math.random() * 4}s;`;
+      bubblesContainer.appendChild(b);
+      setTimeout(() => b.remove(), 22000);
+    }
+    for (let i = 0; i < 8; i++) spawnBubble();
+    setInterval(spawnBubble, 1000);
+
+    // Scroll fade-in with sibling stagger
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll('.fade-in')];
+          const index = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), index * 110);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Counter animation for fact numbers
+    function animateCounter(el) {
+      const target = +el.dataset.count;
+      const duration = 2000;
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - elapsed, 3);
+        el.textContent = Math.round(eased * target);
+        if (elapsed < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.fact-number[data-count]').forEach(el => counterObserver.observe(el));
+
+    // Contact form → opens mailto with pre-filled content
+    function handleSubmit(e) {
+      e.preventDefault();
+      const f = e.target;
+      const name    = `${f.firstName.value} ${f.lastName.value}`;
+      const subject = `Kursanfrage von ${name}`;
+      const body    = [
+        `Name: ${name}`,
+        `E-Mail: ${f.email.value}`,
+        f.phone.value ? `Telefon: ${f.phone.value}` : '',
+        f.course.value ? `Kursinteresse: ${f.course.value}` : '',
+        '',
+        f.message.value
+      ].filter(Boolean).join('\n');
+
+      window.location.href =
+        `mailto:Schwimmschule-Blank@web.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      f.reset();
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      setTimeout(() => (success.style.display = 'none'), 6000);
+    }
+  </script>
+
+</body>
+</html>
