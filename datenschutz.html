@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutz – Schwimmschule U. Blank</title>
+  <style>
+    :root {
+      --navy:      #0B2545;
+      --navy-mid:  #134072;
+      --blue:      #1B6CA8;
+      --sky:       #4BBFED;
+      --white:     #ffffff;
+      --off-white: #f4f8fc;
+      --gray:      #64748b;
+      --radius:    12px;
+      --transition: 0.3s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--navy); line-height: 1.7; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+      height: 72px; background: var(--navy);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo img { height: 60px; width: auto; filter: brightness(0) invert(1); }
+    .nav-back {
+      color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--sky); }
+
+    .page-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 120px 5% 80px;
+    }
+    .page-tag {
+      display: inline-block;
+      background: rgba(75,191,237,0.15); color: var(--blue);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 14px;
+      border-radius: 99px; margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 40px; line-height: 1.25; }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 32px 0 8px; color: var(--navy); }
+    p { font-size: 1rem; color: var(--gray); margin-bottom: 12px; }
+    ul { margin: 8px 0 12px 24px; color: var(--gray); font-size: 1rem; }
+    ul li { margin-bottom: 4px; }
+    a.link { color: var(--blue); transition: color var(--transition); }
+    a.link:hover { color: var(--navy); }
+    .divider { border: none; border-top: 1px solid #e2e8f0; margin: 40px 0; }
+
+    footer {
+      background: #071829; color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 5%; font-size: 0.875rem;
+    }
+    footer a { color: rgba(255,255,255,0.55); transition: color var(--transition); }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Schwimmschule_Logo_ohne_Hintergrund.png" alt="Schwimmschule U. Blank" />
+    </a>
+    <a href="index.html" class="nav-back">← Zurück zur Startseite</a>
+  </nav>
+
+  <div class="page-wrap">
+    <span class="page-tag">Rechtliches</span>
+    <h1>Datenschutzerklärung</h1>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>
+      Ulrich Blank · Schwimmschule U. Blank<br>
+      Sonnenstraße 50, 91550 Dinkelsbühl<br>
+      E-Mail: <a href="mailto:Schwimmschule-Blank@web.de" class="link">Schwimmschule-Blank@web.de</a><br>
+      Telefon: <a href="tel:+4998515511156" class="link">09851 / 5511156</a>
+    </p>
+
+    <hr class="divider">
+
+    <h2>2. Hosting</h2>
+    <p>Diese Website wird über Netlify (Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website werden automatisch technische Zugriffsdaten in Server-Logfiles gespeichert, darunter:</p>
+    <ul>
+      <li>IP-Adresse des anfragenden Geräts</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Aufgerufene Seite / Datei</li>
+      <li>Browser und Betriebssystem</li>
+    </ul>
+    <p>Diese Daten werden ausschließlich zur Sicherstellung des Betriebs und der Sicherheit der Website verarbeitet (Art. 6 Abs. 1 lit. f DSGVO) und nicht mit anderen Datenquellen zusammengeführt. Weitere Informationen zum Datenschutz bei Netlify finden Sie unter <a href="https://www.netlify.com/privacy/" class="link" target="_blank" rel="noopener">netlify.com/privacy</a>.</p>
+
+    <hr class="divider">
+
+    <h2>3. Kontaktformular</h2>
+    <p>Das Kontaktformular auf dieser Website überträgt keine Daten an einen Server. Bei Absenden wird Ihr Standard-E-Mail-Programm mit einer vorausgefüllten Nachricht geöffnet (mailto-Link). Die Datenübertragung erfolgt ausschließlich über Ihr lokales E-Mail-Programm. Es werden keine Formulardaten auf unseren Servern gespeichert.</p>
+
+    <hr class="divider">
+
+    <h2>4. Cookies</h2>
+    <p>Diese Website verwendet keine Cookies. Es werden keine Tracking- oder Analyse-Werkzeuge eingesetzt.</p>
+
+    <hr class="divider">
+
+    <h2>5. Ihre Rechte</h2>
+    <p>Sie haben gemäß DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie das Recht auf Datenübertragbarkeit. Wenden Sie sich dazu jederzeit an die oben genannte Kontaktadresse.</p>
+    <p>Zudem haben Sie das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren. Die zuständige Aufsichtsbehörde in Bayern ist:</p>
+    <p>
+      Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)<br>
+      Promenade 18, 91522 Ansbach<br>
+      <a href="https://www.lda.bayern.de" class="link" target="_blank" rel="noopener">www.lda.bayern.de</a>
+    </p>
+  </div>
+
+  <footer>
+    <p>
+      © 2025 Schwimmschule U. Blank ·
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </footer>
+
+</body>
+</html>

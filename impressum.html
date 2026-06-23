@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Schwimmschule U. Blank</title>
+  <style>
+    :root {
+      --navy:      #0B2545;
+      --navy-mid:  #134072;
+      --blue:      #1B6CA8;
+      --sky:       #4BBFED;
+      --white:     #ffffff;
+      --off-white: #f4f8fc;
+      --gray:      #64748b;
+      --radius:    12px;
+      --transition: 0.3s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--navy); line-height: 1.7; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+      height: 72px; background: var(--navy);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo img { height: 60px; width: auto; filter: brightness(0) invert(1); }
+    .nav-back {
+      color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--sky); }
+
+    .page-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 120px 5% 80px;
+    }
+    .page-tag {
+      display: inline-block;
+      background: rgba(75,191,237,0.15); color: var(--blue);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 14px;
+      border-radius: 99px; margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 40px; line-height: 1.25; }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 32px 0 8px; color: var(--navy); }
+    p, address { font-size: 1rem; color: var(--gray); font-style: normal; margin-bottom: 8px; }
+    a.link { color: var(--blue); transition: color var(--transition); }
+    a.link:hover { color: var(--navy); }
+    .divider { border: none; border-top: 1px solid #e2e8f0; margin: 40px 0; }
+
+    footer {
+      background: #071829; color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 5%; font-size: 0.875rem;
+    }
+    footer a { color: rgba(255,255,255,0.55); transition: color var(--transition); }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Schwimmschule_Logo_ohne_Hintergrund.png" alt="Schwimmschule U. Blank" />
+    </a>
+    <a href="index.html" class="nav-back">← Zurück zur Startseite</a>
+  </nav>
+
+  <div class="page-wrap">
+    <span class="page-tag">Rechtliches</span>
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <address>
+      Ulrich Blank<br>
+      Schwimmschule U. Blank<br>
+      Sonnenstraße 50<br>
+      91550 Dinkelsbühl
+    </address>
+
+    <h2>Kontakt</h2>
+    <p>Telefon: <a href="tel:+4998515511156" class="link">09851 / 5511156</a></p>
+    <p>Mobil: <a href="tel:+4915209718444" class="link">0152 / 09718444</a></p>
+    <p>E-Mail: <a href="mailto:Schwimmschule-Blank@web.de" class="link">Schwimmschule-Blank@web.de</a></p>
+
+    <hr class="divider">
+
+    <h2>Berufsbezeichnung</h2>
+    <p>Geprüfter Schwimmmeister</p>
+
+    <hr class="divider">
+
+    <h2>Haftung für Inhalte</h2>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+  </div>
+
+  <footer>
+    <p>
+      © 2025 Schwimmschule U. Blank ·
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </footer>
+
+</body>
+</html>
