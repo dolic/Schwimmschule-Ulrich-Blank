@@ -145,7 +145,7 @@
     /* ========== Hero ========== */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 55%, var(--blue) 100%);
+      background: var(--navy);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -153,6 +153,22 @@
       position: relative;
       padding: 120px 5% 80px;
       overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: blur(6px);
+      transform: scale(1.06);
+      opacity: 0.45;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg, rgba(11,37,69,0.82) 0%, rgba(19,64,114,0.72) 55%, rgba(27,108,168,0.65) 100%);
+      z-index: 1;
     }
     .hero-bubbles {
       position: absolute;
@@ -173,6 +189,7 @@
       100% { transform: translateY(-120px) scale(1); opacity: 0; }
     }
     .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-bubbles  { z-index: 1; }
     .hero-logo {
       width: clamp(200px, 38vw, 340px);
       margin: 0 auto 36px;
@@ -539,6 +556,10 @@
 
   <!-- ===== Hero ===== -->
   <section id="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="vid/hero-bg-loop-small.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
     <div class="hero-bubbles" id="bubbles"></div>
     <div class="hero-content">
       <img
